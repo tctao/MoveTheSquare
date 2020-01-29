@@ -9,16 +9,33 @@ public class GameController {
 			double dx = mouseX - (square.getX() + square.getWidth()/2);
 			double dy = mouseY - (square.getY() + square.getHeight()/2);
 			
+			// sqaure should no stop along the edges, given that the cursor is still in bounds.
 			double moveX = 0, moveY = 0;
 			if (dx > 0) {
-				moveX = Game.MOVE_DIST;
+				if (square.getX() + square.getWidth() > game.getWidth()) {
+					moveX = 0;
+				} else {
+					moveX = Game.MOVE_DIST;
+				}
 			} else {
-				moveX = -Game.MOVE_DIST;
+				if (square.getX() < 0) {
+					moveX = 0;
+				} else {
+					moveX = -Game.MOVE_DIST;
+				}
 			}
 			if (dy > 0) {
-				moveY = Game.MOVE_DIST;
+				if (square.getY() + square.getHeight() > game.getHeight()) {
+					moveY = 0;
+				} else {
+					moveY = Game.MOVE_DIST;
+				}
 			} else {
-				moveY = -Game.MOVE_DIST;
+				if (square.getY() < 0) {
+					moveY = 0;
+				} else {
+					moveY = -Game.MOVE_DIST;
+				}
 			}
 			
 			game.setSquareDx(moveX);
